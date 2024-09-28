@@ -8,6 +8,7 @@ var team_blue = []
 func _ready() -> void:
 	var red_nodes = get_team_nodes('TeamRed')
 	var blue_nodes = get_team_nodes('TeamBlue')
+	update_team_count()
 
 func update_team_count():
 	team_red = get_team_nodes('TeamRed')
