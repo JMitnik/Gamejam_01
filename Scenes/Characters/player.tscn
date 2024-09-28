@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cytw2g47hlqlo"]
+[gd_scene load_steps=6 format=3 uid="uid://duwvkaosg07v"]
 
 [ext_resource type="Script" path="res://Scripts/Players/player.gd" id="1_jbgcb"]
 [ext_resource type="Texture2D" uid="uid://3yykvbmya53s" path="res://Assets/sprites/BluePlayer/Spr_Blueplayer_0.png" id="2_y4eex"]
@@ -22,15 +22,17 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D"]
+scale = Vector2(1, 1.00569)
 script = ExtResource("1_jbgcb")
 SPEED = 110.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 5)
+position = Vector2(0, -0.994347)
+scale = Vector2(1.02963, 1.02963)
 shape = SubResource("CircleShape2D_vsfx1")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(4, 4)
+position = Vector2(3, 2)
 position_smoothing_enabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

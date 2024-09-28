@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://b2xwgyh4v5vxe"]
+
+[ext_resource type="Texture2D" uid="uid://c2jcte72ptg4f" path="res://Assets/sprites/Wall/Spr_wall_1.png" id="1_5waxg"]
+[ext_resource type="PackedScene" uid="uid://bmrl0hccqh21l" path="res://Scenes/World/wall.tscn" id="2_nbbki"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_asxwe"]
+load_path = "res://.godot/imported/Spr_wall_1.png-714c4bc91b01bc77395f559201ea240e.ctex"
+
+[node name="Walls" type="Node"]
+
+[node name="SprWall1" type="Sprite2D" parent="."]
+position = Vector2(-1, -5)
+texture = SubResource("CompressedTexture2D_asxwe")
+offset = Vector2(1, 0)
+
+[node name="SprWall2" type="Sprite2D" parent="."]
+position = Vector2(-3.55554, -6)
+scale = Vector2(1.00556, 1.00556)
+texture = SubResource("CompressedTexture2D_asxwe")
+
+[node name="SprWall3" type="Sprite2D" parent="."]
+position = Vector2(-2, -5)
+texture = ExtResource("1_5waxg")
+
+[node name="Wall top" parent="." instance=ExtResource("2_nbbki")]
+position = Vector2(-655, -333)
+scale = Vector2(3.67107, -0.194758)
+
+[node name="Wall bottom" parent="." instance=ExtResource("2_nbbki")]
+position = Vector2(-655, 380)
+scale = Vector2(3.67107, -0.194758)
+
+[node name="Wall left" parent="." instance=ExtResource("2_nbbki")]
+position = Vector2(-698, -476)
+scale = Vector2(0.240003, 3.76)
+
+[node name="Wall left2" parent="." instance=ExtResource("2_nbbki")]
+position = Vector2(611, -461)
+scale = Vector2(0.240003, 3.76)
