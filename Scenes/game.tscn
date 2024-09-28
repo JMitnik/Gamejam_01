@@ -16,10 +16,10 @@ texture = ExtResource("4_dkf2j")
 
 [node name="Walls" parent="." instance=ExtResource("2_gw40k")]
 
-[node name="BallManager" type="Node" parent="."]
+[node name="BallManagerTest" type="Node" parent="."]
 script = ExtResource("3_s2176")
 
-[node name="Ball" parent="BallManager" instance=ExtResource("2_e0rp0")]
+[node name="Ball" parent="BallManagerTest" instance=ExtResource("2_e0rp0")]
 unique_name_in_owner = true
 position = Vector2(-23, 44)
 scale = Vector2(0.739708, 0.723006)
@@ -35,6 +35,6 @@ collision_layer = 1024
 collision_mask = 50176
 SPEED = 500.0
 
-[connection signal="player_collision" from="BallManager/Ball" to="BallManager" method="_on_ball_player_collision"]
-[connection signal="ball_is_thrown" from="BallManager/Player" to="BallManager" method="_on_player_ball_is_thrown"]
-[connection signal="moving_with_ball" from="BallManager/Player" to="BallManager" method="_on_player_moving_with_ball"]
+[connection signal="player_collision" from="BallManagerTest/Ball" to="BallManagerTest" method="_on_ball_player_collision"]
+[connection signal="ball_is_thrown" from="BallManagerTest/Player" to="BallManagerTest" method="_on_player_ball_is_thrown"]
+[connection signal="moving_with_ball" from="BallManagerTest/Player" to="BallManagerTest" method="_on_player_moving_with_ball"]

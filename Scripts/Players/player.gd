@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var SPEED = 130.0
+@export var SPEED = 500.0
 #Used for movement smoothing later
 @export var ACCEL = 10.0
 
@@ -16,6 +16,15 @@ var ISDASHING = false
 @export var DASHSPEEDMULT = 1.2
 @export var DASHTIMER = 0.1
 @export var CANDASHTIMER = 2
+
+#used for throw charging mechanic
+@onready var chargecam = get_node("/Root/Game/Characters/Player/Camera2D")
+@onready var charge = $Throwcharge
+@export var CHARGESPEED = 200
+@export var throwspeed = 25
+var hitmax = false
+
+var camzoom = false
 
 #player moves across a Vector2..
 var input : Vector2
@@ -34,9 +43,29 @@ func get_move_input():
 	return input.normalized()
 
 func _physics_process(delta: float) -> void:
-	if Input.is_action_just_pressed("throw_ball") and have_ball:
-		throw_ball()
-	
+	#keep changing continously, but we'll set it to 0 when starting
+	if Input.is_action_pressed("throw_ball") == true && have_ball:
+		charge.visible = true
+		SPEED = CHARGESPEED
+		if charge.value < charge.max_value && hitmax == false:
+			charge.value += delta
+			if charge.value == charge.max_value:
+				hitmax = true;
+		if charge.value > 0 && hitmax == true:
+			charge.value -= delta
+			if charge.value == 0:
+				hitmax = false
+
+		throwspeed = charge.value
+	elif Input.is_action_just_released("throw_ball"):
+		throwspeed = charge.value
+		print(throwspeed)
+		hitmax = false
+		throw_ball(throwspeed)
+		SPEED = SPEEDCARRY
+		charge.visible = false
+		charge.value = 0
+			
 	if have_ball:
 		moving_with_ball.emit(position)
 
@@ -58,8 +87,8 @@ func _physics_process(delta: float) -> void:
 
 func move_ball():
 	pass
-
-func throw_ball():
+	
+func throw_ball(throwspeed):
 	var player_position = global_position
 	var mouse_position = get_global_mouse_position()
 	
@@ -67,7 +96,7 @@ func throw_ball():
 	var direction = mouse_position - player_position
 	direction = direction.normalized()
 	
-	ball_is_thrown.emit(direction)
+	ball_is_thrown.emit(direction, throwspeed)
 	have_ball = false
 
 func dash():

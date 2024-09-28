@@ -34,6 +34,14 @@ radius = 8.15843
 position = Vector2(-1, -5)
 texture = ExtResource("2_u7wu7")
 
+[node name="Center-wall" type="StaticBody2D" parent="Floor"]
+collision_layer = 32768
+collision_mask = 3072
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor/Center-wall"]
+position = Vector2(-3, -5)
+shape = SubResource("RectangleShape2D_nqtsr")
+
 [node name="Walls" parent="." instance=ExtResource("5_n75n2")]
 
 [node name="Ball" parent="." instance=ExtResource("3_bq0bh")]
@@ -53,7 +61,6 @@ scale = Vector2(5, 5)
 collision_layer = 1024
 collision_mask = 50176
 script = ExtResource("3_m0rd3")
-SPEED = 500.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TeamBlue/Player"]
 scale = Vector2(0.2, 0.2)
