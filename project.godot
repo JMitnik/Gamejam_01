@@ -65,6 +65,8 @@ dash={
 2d_physics/layer_12="right_players"
 2d_physics/layer_13="ball"
 2d_physics/layer_14="player"
+2d_physics/layer_15="wall"
+2d_physics/layer_16="center-wall"
 
 [rendering]
 
