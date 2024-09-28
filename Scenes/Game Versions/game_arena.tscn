@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://dagdub1j6uxc8"]
 
 [ext_resource type="PackedScene" path="res://Scenes/player.tscn" id="1_lrmtj"]
-[ext_resource type="PackedScene" uid="uid://c1cihamlrjthq" path="res://managers.tscn" id="2_ngsgv"]
-[ext_resource type="PackedScene" uid="uid://do6ycsy38vc3" path="res://Scenes/any_character.tscn" id="3_dv47s"]
+[ext_resource type="PackedScene" uid="uid://c1cihamlrjthq" path="res://Scenes/Singletons/managers.tscn" id="2_ngsgv"]
+[ext_resource type="PackedScene" uid="uid://boiu6ahbadbyn" path="res://Scenes/Characters/dodgeball_player.tscn" id="3_3bxlv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wcuar"]
 size = Vector2(1902, 647)
@@ -26,10 +26,17 @@ texture = SubResource("PlaceholderTexture2D_4nts0")
 position = Vector2(160, -42)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(0.4, 0.4)
 
 [node name="Node2D" type="Node2D" parent="."]
 position = Vector2(-96, -154)
 
 [node name="Managers" parent="." instance=ExtResource("2_ngsgv")]
 
-[node name="AnyCharacter" parent="." instance=ExtResource("3_dv47s")]
+[node name="TeamRed" type="Node" parent="."]
+
+[node name="DodgeballPlayer" parent="TeamRed" instance=ExtResource("3_3bxlv")]
+position = Vector2(264, 140)
+scale = Vector2(2.08, 2.08)
+move_speed = 500.0
+change_direction_time = 4.0
