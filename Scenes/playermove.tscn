@@ -1,11 +1,9 @@
-[gd_scene load_steps=13 format=4 uid="uid://cqdijth30ii4s"]
+[gd_scene load_steps=13 format=4 uid="uid://cytw2g47hlqlo"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_jbgcb"]
+[ext_resource type="Texture2D" uid="uid://cvvngta6pbeg8" path="res://Assets/sprites/knight.png" id="1_ourbm"]
 [ext_resource type="Texture2D" uid="uid://cc3lfdmrwq5o6" path="res://Assets/sprites/world_tileset.png" id="3_rrob0"]
-[ext_resource type="Texture2D" uid="uid://3yykvbmya53s" path="res://Assets/sprites/BluePlayer/Spr_Blueplayer_0.png" id="3_tpmds"]
-[ext_resource type="Texture2D" uid="uid://ceoj0vlnyiu67" path="res://Assets/sprites/BG/Spr_bg_1.png" id="4_8c11j"]
-[ext_resource type="Texture2D" uid="uid://clorybw3ky4d1" path="res://Assets/sprites/BluePlayer/Spr_Blueplayer_1.png" id="4_mokvn"]
-[ext_resource type="Texture2D" uid="uid://c8ar1n055h7nv" path="res://Assets/sprites/Wall/Spr_wall_1.png" id="5_shpgh"]
+[ext_resource type="PackedScene" uid="uid://b0afxdvrjobvb" path="res://Scenes/ball.tscn" id="4_ppsyc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nyihl"]
 texture = ExtResource("3_rrob0")
@@ -140,28 +138,44 @@ texture = ExtResource("3_rrob0")
 [sub_resource type="TileSet" id="TileSet_qxnk3"]
 sources/0 = SubResource("TileSetAtlasSource_nyihl")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_fjnen"]
+atlas = ExtResource("1_ourbm")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nxpkb"]
+atlas = ExtResource("1_ourbm")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j1lif"]
+atlas = ExtResource("1_ourbm")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_27ri7"]
+atlas = ExtResource("1_ourbm")
+region = Rect2(64, 0, 32, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_2aa2l"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_tpmds")
+"texture": SubResource("AtlasTexture_fjnen")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_mokvn")
+"texture": SubResource("AtlasTexture_nxpkb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j1lif")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_27ri7")
 }],
 "loop": true,
 "name": &"default",
-"speed": 3.0
+"speed": 5.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vsfx1"]
 radius = 5.0
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_yawxx"]
-load_path = "res://.godot/imported/Spr_Blueplayer_1.png-82509281d4a4729cc60cdc7b32fe394f.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2un1x"]
-load_path = "res://.godot/imported/Spr_Redplayer_1.png-a04f0d928dbfe850c87c1480c0907907.ctex"
 
 [node name="Placeholder" type="Node2D"]
 
@@ -172,12 +186,11 @@ tile_set = SubResource("TileSet_qxnk3")
 
 [node name="Player" type="CharacterBody2D" parent="."]
 script = ExtResource("1_jbgcb")
+SPEED = 110.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
-scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_2aa2l")
 autoplay = "default"
-frame_progress = 0.130466
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 position = Vector2(0, 5)
@@ -187,23 +200,4 @@ shape = SubResource("CircleShape2D_vsfx1")
 zoom = Vector2(4, 4)
 position_smoothing_enabled = true
 
-[node name="SprBg1" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(-1, -5)
-texture = ExtResource("4_8c11j")
-
-[node name="SprBlueplayer1" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(-411, -2)
-texture = SubResource("CompressedTexture2D_yawxx")
-
-[node name="SprRedplayer1" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(414, 4)
-texture = SubResource("CompressedTexture2D_2un1x")
-
-[node name="SprWall1" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(-1, -5)
-texture = ExtResource("5_shpgh")
-offset = Vector2(1, 0)
+[node name="Ball" parent="Player" instance=ExtResource("4_ppsyc")]

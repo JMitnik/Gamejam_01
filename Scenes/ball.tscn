@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://c66fahcn6bnbi"]
+[gd_scene load_steps=4 format=3 uid="uid://b0afxdvrjobvb"]
 
 [ext_resource type="Script" path="res://Scripts/ball.gd" id="1_3ai8g"]
 [ext_resource type="Texture2D" uid="uid://dpbpym12aypii" path="res://Assets/sprites/ball.png" id="1_hmj12"]
@@ -14,6 +14,6 @@ shape = SubResource("CircleShape2D_gl2k3")
 [node name="BallPivot" type="Marker2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="BallPivot"]
-position = Vector2(100.98, 0)
-scale = Vector2(0.5, 0.5)
+position = Vector2(25, 0)
+scale = Vector2(0.1, 0.1)
 texture = ExtResource("1_hmj12")
