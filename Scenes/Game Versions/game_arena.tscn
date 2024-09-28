@@ -1,42 +1,89 @@
-[gd_scene load_steps=6 format=3 uid="uid://dagdub1j6uxc8"]
+[gd_scene load_steps=7 format=3 uid="uid://dagdub1j6uxc8"]
 
-[ext_resource type="PackedScene" path="res://Scenes/player.tscn" id="1_lrmtj"]
+[ext_resource type="PackedScene" uid="uid://bmrl0hccqh21l" path="res://Scenes/World/wall.tscn" id="1_ekg3v"]
+[ext_resource type="PackedScene" uid="uid://bjwox7kcvv8ff" path="res://Scenes/player.tscn" id="1_lrmtj"]
 [ext_resource type="PackedScene" uid="uid://c1cihamlrjthq" path="res://Scenes/Singletons/managers.tscn" id="2_ngsgv"]
 [ext_resource type="PackedScene" uid="uid://boiu6ahbadbyn" path="res://Scenes/Characters/dodgeball_player.tscn" id="3_3bxlv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wcuar"]
-size = Vector2(1902, 647)
+size = Vector2(1915, 1068.5)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_4nts0"]
 
 [node name="Game" type="Node2D"]
+position = Vector2(-2, 5)
 
-[node name="Floor" type="Area2D" parent="."]
+[node name="Arena" type="Node2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
-position = Vector2(857, 595.5)
+[node name="Floor" type="StaticBody2D" parent="Arena"]
+collision_layer = 512
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Arena/Floor"]
+position = Vector2(856.5, 383.75)
 shape = SubResource("RectangleShape2D_wcuar")
 
-[node name="Sprite2D" type="Sprite2D" parent="Floor"]
-position = Vector2(860, 384)
+[node name="Sprite2D" type="Sprite2D" parent="Arena/Floor"]
+position = Vector2(858, 386)
 scale = Vector2(1920, 1080)
 texture = SubResource("PlaceholderTexture2D_4nts0")
 
+[node name="Node" type="Node" parent="Arena/Floor"]
+
+[node name="Walls" type="Node" parent="Arena"]
+
+[node name="StaticBody2D" parent="Arena/Walls" instance=ExtResource("1_ekg3v")]
+position = Vector2(-109, -208)
+scale = Vector2(5.44, 0.2)
+
+[node name="StaticBody2D2" parent="Arena/Walls" instance=ExtResource("1_ekg3v")]
+position = Vector2(-111, 940)
+scale = Vector2(5.44, 0.2)
+
+[node name="StaticBody2D3" parent="Arena/Walls" instance=ExtResource("1_ekg3v")]
+position = Vector2(-194, -138)
+scale = Vector2(0.240003, 3.76)
+
+[node name="StaticBody2D4" parent="Arena/Walls" instance=ExtResource("1_ekg3v")]
+position = Vector2(1839, -144)
+scale = Vector2(0.240003, 3.76)
+
 [node name="Player" parent="." instance=ExtResource("1_lrmtj")]
-position = Vector2(160, -42)
+position = Vector2(365, 383)
+collision_layer = 1024
+collision_mask = 17408
+SPEED = 250.0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(0.4, 0.4)
-
-[node name="Node2D" type="Node2D" parent="."]
-position = Vector2(-96, -154)
+zoom = Vector2(0.7, 0.7)
 
 [node name="Managers" parent="." instance=ExtResource("2_ngsgv")]
 
 [node name="TeamRed" type="Node" parent="."]
 
 [node name="DodgeballPlayer" parent="TeamRed" instance=ExtResource("3_3bxlv")]
-position = Vector2(264, 140)
-scale = Vector2(2.08, 2.08)
-move_speed = 500.0
-change_direction_time = 4.0
+position = Vector2(1049, 107)
+scale = Vector2(1.32, 1.32)
+collision_layer = 2048
+collision_mask = 2048
+move_speed = 100.0
+change_direction_time = 1.0
+
+[node name="DodgeballPlayer2" parent="TeamRed" instance=ExtResource("3_3bxlv")]
+position = Vector2(1077, 424)
+scale = Vector2(0.920005, 0.920005)
+collision_layer = 2048
+collision_mask = 2048
+slide_on_ceiling = false
+floor_stop_on_slope = false
+floor_block_on_wall = false
+move_speed = 100.0
+change_direction_time = 1.0
+
+[node name="DodgeballPlayer3" parent="TeamRed" instance=ExtResource("3_3bxlv")]
+position = Vector2(1271, 242)
+scale = Vector2(0.72, 0.72)
+collision_layer = 2048
+collision_mask = 2048
+move_speed = 100.0
+change_direction_time = 1.0

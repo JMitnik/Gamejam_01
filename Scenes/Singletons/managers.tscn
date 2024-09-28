@@ -5,4 +5,5 @@
 [node name="Managers" type="Node"]
 
 [node name="WinningStateManager" type="Node" parent="."]
+unique_name_in_owner = true
 script = ExtResource("1_80aal")

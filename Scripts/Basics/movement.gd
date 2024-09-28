@@ -1,4 +1,17 @@
-extends CharacterBody2D
+extends Node
+
+@onready var player = get_parent()
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	print('tt')
+	pass
 
 @export var SPEED = 130.0
 
@@ -7,11 +20,6 @@ extends CharacterBody2D
 
 #player moves across a Vector2..
 var input : Vector2
-
-# Ready
-func _ready() -> void:
-	print('test')
-	pass
 
 func get_input():
 	input.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
@@ -22,8 +30,7 @@ func get_input():
 	
 func _physics_process(delta: float) -> void:
 	var playerInput = get_input()
-	
-	#lerp is short for linear interpolation; input*speed = topspeed & delta & ACCEL smoothens movement, lower is more lag higher is more snap.
+	#lerp is short fors linear interpolation; input*speed = topspeed & delta & ACCEL smoothens movement, lower is more lag higher is more snap.
 	velocity = lerp(velocity, playerInput * SPEED, delta * ACCEL)
 	
-	move_and_slide()
+	player.move_and_slide()

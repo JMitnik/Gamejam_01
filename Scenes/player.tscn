@@ -1,13 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://cbkx72n7y4co1"]
+[gd_scene load_steps=5 format=3 uid="uid://bjwox7kcvv8ff"]
 
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_pggm8"]
 [ext_resource type="Texture2D" uid="uid://boe5mnmv6cub7" path="res://Assets/sprites/slime_body.png" id="1_ygc3w"]
-[ext_resource type="PackedScene" uid="uid://c66fahcn6bnbi" path="res://Scenes/ball.tscn" id="2_nwcwf"]
+[ext_resource type="PackedScene" path="res://Scenes/ball.tscn" id="2_nwcwf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_brm17"]
 radius = 45.0444
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(73, 44)
+script = ExtResource("1_pggm8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_ygc3w")
