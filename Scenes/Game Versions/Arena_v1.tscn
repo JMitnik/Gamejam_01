@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://w02jvo1o20lr"]
+[gd_scene load_steps=11 format=3 uid="uid://w02jvo1o20lr"]
 
 [ext_resource type="Texture2D" uid="uid://ceoj0vlnyiu67" path="res://Assets/sprites/BG/Spr_bg_1.png" id="2_u7wu7"]
+[ext_resource type="PackedScene" uid="uid://bgf6jqc323otm" path="res://Scenes/ball.tscn" id="3_bq0bh"]
 [ext_resource type="Script" path="res://Scripts/Players/player.gd" id="3_m0rd3"]
 [ext_resource type="Texture2D" uid="uid://3yykvbmya53s" path="res://Assets/sprites/BluePlayer/Spr_Blueplayer_0.png" id="4_tvymp"]
 [ext_resource type="Texture2D" uid="uid://clorybw3ky4d1" path="res://Assets/sprites/BluePlayer/Spr_Blueplayer_1.png" id="5_lsu3f"]
@@ -35,13 +36,22 @@ texture = ExtResource("2_u7wu7")
 
 [node name="Walls" parent="." instance=ExtResource("5_n75n2")]
 
+[node name="Ball" parent="." instance=ExtResource("3_bq0bh")]
+unique_name_in_owner = true
+position = Vector2(-177, -3)
+scale = Vector2(0.739708, 0.723006)
+collision_layer = 4097
+collision_mask = 31744
+initial_velocity = 20
+
 [node name="TeamBlue" type="Node" parent="."]
 
 [node name="Player" type="CharacterBody2D" parent="TeamBlue"]
+unique_name_in_owner = true
 position = Vector2(-252, -1)
 scale = Vector2(5, 5)
 collision_layer = 1024
-collision_mask = 17408
+collision_mask = 50176
 script = ExtResource("3_m0rd3")
 SPEED = 500.0
 
@@ -57,7 +67,6 @@ position = Vector2(0, 0.4)
 shape = SubResource("CircleShape2D_vsfx1")
 
 [node name="Camera2D" type="Camera2D" parent="TeamBlue/Player"]
-visible = false
 zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 
