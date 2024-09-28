@@ -8,6 +8,7 @@ var caught = false
 # the centre of the ball scene when moving, otherwise, move it by x pixels 
 # to the right
 @onready var sprite = $BallPivot/Sprite2D
+@onready var collision_shape = $CollisionShape2D
 
 var direction = Vector2(5.0, -10.0).normalized()
 
@@ -17,6 +18,8 @@ func _ready():
 func be_caught():
 	caught = true
 	sprite.position = Vector2(100, 0)
+	collision_shape.disabled = true
+	
 
 func be_thrown(new_direction):
 	#print(position, sprite.position)
@@ -34,9 +37,11 @@ func _physics_process(delta):
 		look_at(get_global_mouse_position())
 	else: 
 		print(direction)
-		velocity = direction * 10
+		velocity = direction * 0.2
 		var collision = move_and_collide(velocity)
 		if collision:
 			velocity *= 0.0
 			player_collision.emit(collision.get_collider_id())	
 			
+func move_with_player(player_position):
+	position = player_position

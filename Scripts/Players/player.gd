@@ -4,7 +4,9 @@ extends CharacterBody2D
 #Used for movement smoothing later
 @export var ACCEL = 10.0
 
-signal throw_ball
+signal ball_is_thrown
+signal moving_with_ball
+
 var have_ball: bool = false
 #used for dashing
 var SPEEDCARRY = SPEED
@@ -20,6 +22,7 @@ var input : Vector2
 var dashinput : float
 var dashchecker : int
 
+
 func get_move_input():
 	input.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	input.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
@@ -29,19 +32,13 @@ func get_move_input():
 	
 	#normalized means that no matter what direction you go in, it will always be the same speed
 	return input.normalized()
-	
+
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("throw_ball") and have_ball:
-		var player_position = global_position
-		var mouse_position = get_global_mouse_position()
-		
-		# Calculate the direction vector
-		var direction = mouse_position - player_position
-		direction = direction.normalized()
-		
-		throw_ball.emit(direction)
-		print("direction from player", direction)
-		have_ball = false
+		throw_ball()
+	
+	if have_ball:
+		moving_with_ball.emit(position)
 
 	if MOUSEDASH == true:
 		if ISDASHING == true:
@@ -58,7 +55,21 @@ func _physics_process(delta: float) -> void:
 		#lerp is short for linear interpolation; input*speed = topspeed & delta & ACCEL smoothens movement, lower is more lag higher is more snap.
 		velocity = lerp(velocity, playerInput * SPEED, delta * ACCEL)
 		move_and_slide()
-		
+
+func move_ball():
+	pass
+
+func throw_ball():
+	var player_position = global_position
+	var mouse_position = get_global_mouse_position()
+	
+	# Calculate the direction vector
+	var direction = mouse_position - player_position
+	direction = direction.normalized()
+	
+	ball_is_thrown.emit(direction)
+	have_ball = false
+
 func dash():
 	#note, I'm too lazy and am just using the ball as a visual instead of creating a new one. Below is the code actually doing the work.
 	SPEED = SPEED * DASHSPEEDMULT
