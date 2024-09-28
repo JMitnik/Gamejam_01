@@ -1,12 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://b0afxdvrjobvb"]
+[gd_scene load_steps=6 format=3 uid="uid://b0afxdvrjobvb"]
 
 [ext_resource type="Script" path="res://Scripts/Ball/ball.gd" id="1_3ai8g"]
 [ext_resource type="Texture2D" uid="uid://dpbpym12aypii" path="res://Assets/sprites/ball.png" id="1_hmj12"]
+[ext_resource type="Texture2D" uid="uid://cib8bm6mrwad5" path="res://Assets/sprites/Arrow/Spr_arrow_1.png" id="3_5ge12"]
+[ext_resource type="Texture2D" uid="uid://dyqinyb0huw37" path="res://Assets/sprites/Ball/Spr_Ball_0.png" id="4_0yjf6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gl2k3"]
 radius = 27.2029
 
-[node name="Ball" type="CharacterBody2D"]
+[node name="Ball" type="Area2D"]
 script = ExtResource("1_3ai8g")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -18,6 +20,14 @@ texture = ExtResource("1_hmj12")
 
 [node name="BallPivot" type="Marker2D" parent="."]
 
-[node name="Sprite2D" type="Sprite2D" parent="BallPivot"]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_hmj12")
+[node name="SprArrow1" type="Sprite2D" parent="BallPivot"]
+visible = false
+position = Vector2(0, 5.96046e-08)
+rotation = 3.14159
+scale = Vector2(0.974196, 0.897957)
+texture = ExtResource("3_5ge12")
+
+[node name="SprBall0" type="Sprite2D" parent="BallPivot"]
+texture = ExtResource("4_0yjf6")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
