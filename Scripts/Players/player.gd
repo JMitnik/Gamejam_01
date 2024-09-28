@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+class_name Player
+
 @export var SPEED = 130.0
 #Used for movement smoothing later
 @export var ACCEL = 10.0
@@ -22,13 +24,12 @@ var input : Vector2
 var dashinput : float
 var dashchecker : int
 
-
 func get_move_input():
 	input.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	input.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
 	
 	if Input.get_action_strength("dash") && CANDASH == 1:
-			dash()
+		dash()
 	
 	#normalized means that no matter what direction you go in, it will always be the same speed
 	return input.normalized()

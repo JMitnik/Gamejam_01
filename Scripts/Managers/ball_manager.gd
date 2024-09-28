@@ -1,7 +1,10 @@
 extends Node
 
-@onready var ball = get_node("%Ball")
-@onready var player = get_node("/root/Game/BallManager/Player")
+@onready var ball = get_node("/root/Placeholder/BallManager/Ball")
+@onready var player = get_node("/root/Placeholder/TeamBlue/Player")
+
+func _ready():
+	print('testttt')
 
 func _on_player_ball_is_thrown(direction):
 	print("Ball is thrown, send instruction to ball")
@@ -14,7 +17,5 @@ func _on_ball_player_collision(collider_id):
 	ball.be_caught()
 	player.have_ball = true
 
-
 func _on_player_moving_with_ball(player_position):
-	print(player_position)
 	ball.move_with_player(player_position)

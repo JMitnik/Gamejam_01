@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="gamejam_1"
-run/main_scene="res://Scenes/game.tscn"
+run/main_scene="res://Scenes/Game Versions/Arena_v1.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
 
@@ -65,6 +65,8 @@ dash={
 2d_physics/layer_12="right_players"
 2d_physics/layer_13="ball"
 2d_physics/layer_14="player"
+2d_physics/layer_15="wall"
+2d_physics/layer_16="center-wall"
 
 [rendering]
 
