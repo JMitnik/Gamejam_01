@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dpbpym12aypii" path="res://Assets/sprites/ball.png" id="1_hmj12"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gl2k3"]
+radius = 27.2029
 
 [node name="Ball" type="CharacterBody2D"]
 collision_layer = 4096

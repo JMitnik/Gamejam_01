@@ -2,15 +2,12 @@ extends CharacterBody2D
 
 signal player_collision
 
-var caught = false
-
-# TODO, move the offset from the sprite and the ball to 
-# the centre of the ball scene when moving, otherwise, move it by x pixels 
-# to the right
 @onready var sprite = $BallPivot/Sprite2D
 @onready var collision_shape = $CollisionShape2D
 
 @export var initial_velocity = 2
+
+var caught = false
 var direction = Vector2(5.0, -10.0).normalized()
 
 func _ready():
@@ -32,12 +29,12 @@ func be_thrown(new_direction):
 	caught = false
 	print(direction)
 	direction = new_direction
+	collision_shape.disabled = false
 
 func _physics_process(delta):
 	if caught:
 		look_at(get_global_mouse_position())
 	else: 
-		print(direction)
 		velocity = direction * initial_velocity
 		var collision = move_and_collide(velocity)
 		if collision:
