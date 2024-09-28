@@ -1,9 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://cbkx72n7y4co1"]
+[gd_scene load_steps=3 format=3 uid="uid://cbkx72n7y4co1"]
+
+[ext_resource type="Texture2D" uid="uid://boe5mnmv6cub7" path="res://Assets/sprites/slime_body.png" id="1_ygc3w"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_brm17"]
+radius = 59.0085
 
 [node name="Player" type="CharacterBody2D"]
+position = Vector2(73, 44)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(81, 44)
 shape = SubResource("CircleShape2D_brm17")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ygc3w")
