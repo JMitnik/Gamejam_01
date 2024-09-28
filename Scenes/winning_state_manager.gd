@@ -8,23 +8,33 @@ var team_blue = []
 func _ready() -> void:
 	var red_nodes = get_team_nodes('TeamRed')
 	var blue_nodes = get_team_nodes('TeamBlue')
-	print(red_nodes)
-	pass # Replace with function body.
 
-func kill_player(String teamName) -> void:
-	# Call it: var winning_state_manager = get_node("/root/WinningStateManager")
-	#winning_state_manager.kill_player("TeamRed")
-	
-
+func update_team_count():
+	team_red = get_team_nodes('TeamRed')
+	team_blue = get_team_nodes('TeamBlue')
+	print("Red team count: ", team_red.size())
+	print("Blue team count: ", team_blue.size())
 
 func get_team_nodes(team_name: String) -> Array:
 	var team_nodes = get_tree().get_nodes_in_group(team_name)
 	return team_nodes
 
+func kill_player(unit: Node2D, team_name: String) -> void:
+	print("Player from " + team_name + " was killed")
+	
+	# Remove the player from our team arrays
+	if team_name == "TeamRed":
+		team_red.erase(unit)
+	elif team_name == "TeamBlue":
+		team_blue.erase(unit)
+	
+	update_team_count()
+	check_win_condition()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-func get_alive_blue_player_count():
-	return 
+func check_win_condition():
+	if team_red.size() == 0:
+		print("Blue team wins!")
+		# Implement win logic for Blue team
+	elif team_blue.size() == 0:
+		print("Red team wins!")
+		# Implement win logic for Red team

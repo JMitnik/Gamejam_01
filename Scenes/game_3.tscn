@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://dagdub1j6uxc8"]
+
+[ext_resource type="PackedScene" path="res://Scenes/player.tscn" id="1_lrmtj"]
+[ext_resource type="PackedScene" uid="uid://c1cihamlrjthq" path="res://managers.tscn" id="2_ngsgv"]
+[ext_resource type="PackedScene" uid="uid://do6ycsy38vc3" path="res://Scenes/any_character.tscn" id="3_dv47s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wcuar"]
+size = Vector2(1902, 647)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_4nts0"]
+
+[node name="Game" type="Node2D"]
+
+[node name="Floor" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2(857, 595.5)
+shape = SubResource("RectangleShape2D_wcuar")
+
+[node name="Sprite2D" type="Sprite2D" parent="Floor"]
+position = Vector2(860, 384)
+scale = Vector2(1920, 1080)
+texture = SubResource("PlaceholderTexture2D_4nts0")
+
+[node name="Player" parent="." instance=ExtResource("1_lrmtj")]
+position = Vector2(160, -42)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(-96, -154)
+
+[node name="Managers" parent="." instance=ExtResource("2_ngsgv")]
+
+[node name="AnyCharacter" parent="." instance=ExtResource("3_dv47s")]
