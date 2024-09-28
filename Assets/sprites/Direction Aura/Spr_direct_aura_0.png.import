@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cib8bm6mrwad5"
-path="res://.godot/imported/Spr_arrow_1.png-edcf36057ee680dfdd604f478f7fc306.ctex"
+uid="uid://dyooc7uumth7r"
+path="res://.godot/imported/Spr_direct_aura_0.png-3c0b468d02fdaaf31b87ad50e3a326a3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/sprites/Arrow/Spr_arrow_1.png"
-dest_files=["res://.godot/imported/Spr_arrow_1.png-edcf36057ee680dfdd604f478f7fc306.ctex"]
+source_file="res://Assets/sprites/Direction Aura/Spr_direct_aura_0.png"
+dest_files=["res://.godot/imported/Spr_direct_aura_0.png-3c0b468d02fdaaf31b87ad50e3a326a3.ctex"]
 
 [params]
 
