@@ -1,3 +1,53 @@
-[gd_scene format=3 uid="uid://dgfg4qcofhu7h"]
+[gd_scene load_steps=5 format=3 uid="uid://dgfg4qcofhu7h"]
+
+[ext_resource type="Script" path="res://Scenes/sprite_2d.gd" id="1_v02dk"]
+[ext_resource type="Script" path="res://Scenes/player.gd" id="2_5nokj"]
+[ext_resource type="Script" path="res://Scenes/winning_state_manager.gd" id="2_j06w0"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_j8bkb"]
 
 [node name="Game" type="Node2D"]
+
+[node name="Arena" type="Node2D" parent="."]
+
+[node name="Node2D" type="Node2D" parent="Arena"]
+scale = Vector2(3202.43, 921.783)
+
+[node name="Players" type="Node2D" parent="Arena"]
+scale = Vector2(3187.52, 920)
+
+[node name="Team Blue" type="Node2D" parent="Arena/Players"]
+
+[node name="Blue1" type="Node2D" parent="Arena/Players/Team Blue" groups=["TeamBlue"]]
+scale = Vector2(20, 20)
+script = ExtResource("2_5nokj")
+
+[node name="Blue2" type="Node2D" parent="Arena/Players/Team Blue" groups=["TeamBlue"]]
+
+[node name="Blue3" type="Node2D" parent="Arena/Players/Team Blue" groups=["TeamBlue"]]
+
+[node name="Team Red" type="Node2D" parent="Arena/Players"]
+
+[node name="Red1" type="Node2D" parent="Arena/Players/Team Red" groups=["TeamRed"]]
+scale = Vector2(20, 20)
+
+[node name="Red2" type="Node2D" parent="Arena/Players/Team Red" groups=["TeamRed"]]
+
+[node name="Red3" type="Node2D" parent="Arena/Players/Team Red" groups=["TeamRed"]]
+
+[node name="Floor" type="StaticBody2D" parent="Arena"]
+scale = Vector2(3187.52, 920)
+
+[node name="Sprite2D (Floor Sprite)" type="Sprite2D" parent="Arena/Floor"]
+scale = Vector2(1.00468, 1.00194)
+texture = SubResource("PlaceholderTexture2D_j8bkb")
+region_enabled = true
+region_rect = Rect2(0, 0, 1, 1)
+script = ExtResource("1_v02dk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Arena/Floor"]
+
+[node name="Managers" type="Node" parent="."]
+
+[node name="WinningStateManager" type="Node" parent="Managers"]
+script = ExtResource("2_j06w0")
