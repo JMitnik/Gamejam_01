@@ -1,16 +1,18 @@
 [gd_scene load_steps=4 format=3 uid="uid://boiu6ahbadbyn"]
 
 [ext_resource type="Script" path="res://Scripts/Players/dodgeball_player.gd" id="1_kkh1g"]
-[ext_resource type="Texture2D" uid="uid://bn3u0b33f5yxf" path="res://icon.svg" id="1_lx0qq"]
+[ext_resource type="Texture2D" uid="uid://djjahpp83xps0" path="res://Assets/sprites/RedPlayer/Spr_Redplayer_0.png" id="2_dcexq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xb40q"]
 
 [node name="DodgeballPlayer" type="CharacterBody2D"]
+collision_layer = 2048
+collision_mask = 63488
 script = ExtResource("1_kkh1g")
 move_speed = 200.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_lx0qq")
+texture = ExtResource("2_dcexq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_xb40q")
