@@ -5,7 +5,7 @@ class_name DodgeballPlayer
 @export var move_speed: float = 100.0
 @export var change_direction_time: float = 2.0
 #@export var movement_bounds: Rect2 = Rect2(0, 0, 1000, 1000);
-@onready var winning_state_manager: WinningStateManager = get_node("/root/Placeholder/Managers/WinningStateManager")
+@onready var winning_state_manager: WinningStateManager = get_node("/root/Game/Managers/WinningStateManager")
 
 var current_direction: Vector2 = Vector2.ZERO
 var time_since_last_direction_change: float = 0.0

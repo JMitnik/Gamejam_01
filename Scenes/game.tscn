@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://dgfg4qcofhu7h"]
+[gd_scene load_steps=9 format=3 uid="uid://dgfg4qcofhu7h"]
 
 [ext_resource type="PackedScene" uid="uid://bgf6jqc323otm" path="res://Scenes/ball.tscn" id="2_e0rp0"]
 [ext_resource type="PackedScene" uid="uid://b2xwgyh4v5vxe" path="res://Scenes/Arena/walls.tscn" id="2_gw40k"]
 [ext_resource type="PackedScene" uid="uid://duwvkaosg07v" path="res://Scenes/Characters/player.tscn" id="3_lpobb"]
 [ext_resource type="Script" path="res://Scripts/Managers/ball_manager.gd" id="3_s2176"]
 [ext_resource type="Texture2D" uid="uid://ceoj0vlnyiu67" path="res://Assets/sprites/BG/Spr_bg_1.png" id="4_dkf2j"]
+[ext_resource type="PackedScene" uid="uid://boiu6ahbadbyn" path="res://Scenes/Characters/dodgeball_player.tscn" id="6_p8bxj"]
+[ext_resource type="PackedScene" uid="uid://c1cihamlrjthq" path="res://Scenes/Singletons/managers.tscn" id="7_1hgo6"]
+[ext_resource type="Texture2D" uid="uid://dwbx6p18wkk7q" path="res://Assets/sprites/Ball/Spr_Ball_1.png" id="8_hnvv0"]
 
 [node name="Game" type="Node2D"]
 
@@ -16,6 +19,15 @@ texture = ExtResource("4_dkf2j")
 
 [node name="Walls" parent="." instance=ExtResource("2_gw40k")]
 
+[node name="Player" parent="." instance=ExtResource("3_lpobb")]
+unique_name_in_owner = true
+z_index = 1
+position = Vector2(-334, 33)
+scale = Vector2(2.91099, 2.91099)
+collision_layer = 1024
+collision_mask = 50176
+SPEED = 500.0
+
 [node name="BallManagerTest" type="Node" parent="."]
 script = ExtResource("3_s2176")
 
@@ -25,16 +37,27 @@ position = Vector2(-23, 44)
 scale = Vector2(0.739708, 0.723006)
 collision_layer = 4097
 collision_mask = 31744
-initial_velocity = 20
 
-[node name="Player" parent="BallManager" instance=ExtResource("3_lpobb")]
-unique_name_in_owner = true
-position = Vector2(-335, 33.9998)
-scale = Vector2(2.91099, 2.91099)
-collision_layer = 1024
-collision_mask = 50176
-SPEED = 500.0
+[node name="TeamRed" type="Node" parent="."]
 
+[node name="DodgeballPlayer" parent="TeamRed" groups=["TeamRed"] instance=ExtResource("6_p8bxj")]
+position = Vector2(257, -55)
+
+[node name="DodgeballPlayer2" parent="TeamRed" groups=["TeamRed"] instance=ExtResource("6_p8bxj")]
+position = Vector2(186, -212)
+
+[node name="DodgeballPlayer3" parent="TeamRed" groups=["TeamRed"] instance=ExtResource("6_p8bxj")]
+position = Vector2(175, 158)
+
+[node name="Managers" parent="." instance=ExtResource("7_1hgo6")]
+
+[node name="FinalScreen" type="Node" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="FinalScreen"]
+z_index = 5
+scale = Vector2(22.92, 22.92)
+texture = ExtResource("8_hnvv0")
+
+[connection signal="ball_is_thrown" from="Player" to="BallManagerTest" method="_on_player_ball_is_thrown"]
+[connection signal="moving_with_ball" from="Player" to="BallManagerTest" method="_on_player_moving_with_ball"]
 [connection signal="player_collision" from="BallManagerTest/Ball" to="BallManagerTest" method="_on_ball_player_collision"]
-[connection signal="ball_is_thrown" from="BallManagerTest/Player" to="BallManagerTest" method="_on_player_ball_is_thrown"]
-[connection signal="moving_with_ball" from="BallManagerTest/Player" to="BallManagerTest" method="_on_player_moving_with_ball"]
