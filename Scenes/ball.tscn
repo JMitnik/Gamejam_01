@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bgf6jqc323otm"]
+[gd_scene load_steps=4 format=3 uid="uid://b0afxdvrjobvb"]
 
 [ext_resource type="Script" path="res://Scripts/Ball/ball.gd" id="1_3ai8g"]
 [ext_resource type="Texture2D" uid="uid://dpbpym12aypii" path="res://Assets/sprites/ball.png" id="1_hmj12"]
@@ -7,8 +7,6 @@
 radius = 27.2029
 
 [node name="Ball" type="CharacterBody2D"]
-collision_layer = 4096
-collision_mask = 30720
 script = ExtResource("1_3ai8g")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
