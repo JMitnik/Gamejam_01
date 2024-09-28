@@ -1,9 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://c1cihamlrjthq"]
+[gd_scene load_steps=3 format=3 uid="uid://c1cihamlrjthq"]
 
 [ext_resource type="Script" path="res://Scripts/Managers/winning_state_manager.gd" id="1_80aal"]
+[ext_resource type="Script" path="res://Scripts/Managers/ball_manager_test.gd" id="2_678d6"]
 
 [node name="Managers" type="Node"]
 
 [node name="WinningStateManager" type="Node" parent="."]
-unique_name_in_owner = true
 script = ExtResource("1_80aal")
+
+[node name="BallManager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_678d6")
