@@ -43,6 +43,5 @@ func hit():
 
 func destroy():
 	# Implement destruction behavior here
-	print("AI Player destroyed!")
 	winning_state_manager.kill_player(self, team_name)
 	queue_free()

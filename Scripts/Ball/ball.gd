@@ -6,7 +6,7 @@ signal player_collision
 @onready var arrow_sprite = $BallPivot/SprArrow1
 @onready var collision_shape = $CollisionShape2D
 
-@export var ball_speed = 100
+@export var ball_speed = 500
 @export var sprite_offset_from_player = Vector2(35, 0)
 @export var arrow_sprite_offset_from_ball = Vector2(80, 0)
 
@@ -28,8 +28,8 @@ func be_caught(catching_player):
 	arrow_sprite.visible = true
 	arrow_sprite.position = sprite_offset_from_player + arrow_sprite_offset_from_ball
 
-func be_thrown(new_direction):
-	
+func be_thrown(new_direction, throwspeed):
+	print(throwspeed)
 	# Set the position of the Ball to the position of the sprite
 	position = ball_sprite.global_position
 	# Remove the offset
@@ -41,6 +41,8 @@ func be_thrown(new_direction):
 	collision_shape.disabled = false
 
 func _physics_process(delta):
+	#print(delta)
+	
 	if caught:
 		position = owned_by_player.position
 		look_at(get_global_mouse_position())
@@ -48,11 +50,17 @@ func _physics_process(delta):
 		position += ball_direction * ball_speed * delta
 			
 func _on_body_entered(body):
-	if body.has_method("throw_ball"):
-		if true: # If a player catches the ball
-			be_caught(body)
-			player_collision.emit()
-		else:
-			print("Put the logic where a player dies")
-
-	
+	if body is DodgeballPlayer:
+		if true: 
+			hit_dodgeball_player(body)
+		# If a player catches the ball
+	elif body is Player:
+		print("hit by player")
+		be_caught(body)
+		player_collision.emit()
+	else:
+		be_caught(owned_by_player)
+		
+func hit_dodgeball_player(player: DodgeballPlayer) -> void:
+	print('destroy!')
+	player.destroy()

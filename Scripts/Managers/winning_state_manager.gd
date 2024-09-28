@@ -3,11 +3,13 @@ extends Node
 
 var team_red = []
 var team_blue = []
+@onready var final_screen: Sprite2D = get_node("/root/Game/FinalScreen/Sprite2D")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var red_nodes = get_team_nodes('TeamRed')
 	var blue_nodes = get_team_nodes('TeamBlue')
+	final_screen.hide()
 
 func update_team_count():
 	team_red = get_team_nodes('TeamRed')
@@ -32,9 +34,13 @@ func kill_player(unit: Node2D, team_name: String) -> void:
 	check_win_condition()
 
 func check_win_condition():
-	if team_red.size() == 0:
+	if team_red.size() == 1:
 		print("Blue team wins!")
+		
+		# Show Node named FinalScreen
+		final_screen.show()	
+		
 		# Implement win logic for Blue team
-	elif team_blue.size() == 0:
+	elif team_blue.size() == 1:
 		print("Red team wins!")
 		# Implement win logic for Red team

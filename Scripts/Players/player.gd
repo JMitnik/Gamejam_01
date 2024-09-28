@@ -1,3 +1,4 @@
+class_name Player
 extends CharacterBody2D
 
 @export var SPEED = 130.0
@@ -22,20 +23,19 @@ var input : Vector2
 var dashinput : float
 var dashchecker : int
 
-
 func get_move_input():
 	input.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	input.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
 	
 	if Input.get_action_strength("dash") && CANDASH == 1:
-			dash()
+		dash()
 	
 	#normalized means that no matter what direction you go in, it will always be the same speed
 	return input.normalized()
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("throw_ball") and have_ball:
-		throw_ball()
+		throw_ball(10)
 	
 	if have_ball:
 		moving_with_ball.emit(position)
@@ -59,7 +59,8 @@ func _physics_process(delta: float) -> void:
 func move_ball():
 	pass
 
-func throw_ball():
+func throw_ball(throwspeeds):
+	print(throwspeeds)
 	var player_position = global_position
 	var mouse_position = get_global_mouse_position()
 	
