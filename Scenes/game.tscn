@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b0afxdvrjobvb" path="res://Scenes/ball.tscn" id="2_e0rp0"]
 [ext_resource type="PackedScene" uid="uid://b2xwgyh4v5vxe" path="res://Scenes/Arena/walls.tscn" id="2_gw40k"]
-[ext_resource type="PackedScene" uid="uid://duwvkaosg07v" path="res://Scenes/Characters/player.tscn" id="3_lpobb"]
+[ext_resource type="PackedScene" path="res://Scenes/Characters/player.tscn" id="3_lpobb"]
 [ext_resource type="Script" path="res://Scripts/Managers/ball_manager.gd" id="3_s2176"]
 [ext_resource type="Texture2D" uid="uid://ceoj0vlnyiu67" path="res://Assets/sprites/BG/Spr_bg_1.png" id="4_dkf2j"]
 
