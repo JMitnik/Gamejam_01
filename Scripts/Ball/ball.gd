@@ -6,7 +6,7 @@ signal player_collision
 @onready var arrow_sprite = $BallPivot/SprArrow1
 @onready var collision_shape = $CollisionShape2D
 
-@export var initial_speed = 100
+@export var ball_speed = 100
 @export var sprite_offset_from_player = Vector2(35, 0)
 @export var arrow_sprite_offset_from_ball = Vector2(80, 0)
 
@@ -45,7 +45,7 @@ func _physics_process(delta):
 		position = owned_by_player.position
 		look_at(get_global_mouse_position())
 	else: 
-		position += ball_direction * initial_speed * delta
+		position += ball_direction * ball_speed * delta
 			
 func _on_body_entered(body):
 	if body.has_method("throw_ball"):
