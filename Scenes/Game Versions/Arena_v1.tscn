@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://w02jvo1o20lr"]
+[gd_scene load_steps=10 format=3 uid="uid://w02jvo1o20lr"]
 
 [ext_resource type="Texture2D" uid="uid://ceoj0vlnyiu67" path="res://Assets/sprites/BG/Spr_bg_1.png" id="2_u7wu7"]
 [ext_resource type="Script" path="res://Scripts/Players/player.gd" id="3_m0rd3"]
 [ext_resource type="Texture2D" uid="uid://3yykvbmya53s" path="res://Assets/sprites/BluePlayer/Spr_Blueplayer_0.png" id="4_tvymp"]
 [ext_resource type="Texture2D" uid="uid://clorybw3ky4d1" path="res://Assets/sprites/BluePlayer/Spr_Blueplayer_1.png" id="5_lsu3f"]
 [ext_resource type="PackedScene" uid="uid://b2xwgyh4v5vxe" path="res://Scenes/Arena/walls.tscn" id="5_n75n2"]
+[ext_resource type="PackedScene" uid="uid://boiu6ahbadbyn" path="res://Scenes/Characters/dodgeball_player.tscn" id="6_gwr4f"]
+[ext_resource type="PackedScene" uid="uid://c1cihamlrjthq" path="res://Scenes/Singletons/managers.tscn" id="7_ijdkl"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2aa2l"]
 animations = [{
@@ -60,7 +62,6 @@ zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 
 [node name="TeamRed" type="Node" parent="."]
-<<<<<<< HEAD
 
 [node name="DodgeballPlayer" parent="TeamRed" instance=ExtResource("6_gwr4f")]
 position = Vector2(257, -55)
@@ -73,5 +74,3 @@ scale = Vector2(1, 0.995656)
 position = Vector2(175, 158)
 
 [node name="Managers" parent="." instance=ExtResource("7_ijdkl")]
-=======
->>>>>>> 63ca46a323bd8224239c5032d30cabcefa43a426
