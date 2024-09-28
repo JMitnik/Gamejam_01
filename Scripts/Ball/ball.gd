@@ -9,6 +9,7 @@ var caught = false
 # to the right
 @onready var sprite = $BallPivot/Sprite2D
 
+@export var initial_velocity = 2
 var direction = Vector2(5.0, -10.0).normalized()
 
 func _ready():
@@ -34,7 +35,7 @@ func _physics_process(delta):
 		look_at(get_global_mouse_position())
 	else: 
 		print(direction)
-		velocity = direction * 10
+		velocity = direction * initial_velocity
 		var collision = move_and_collide(velocity)
 		if collision:
 			velocity *= 0.0

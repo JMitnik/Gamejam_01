@@ -1,15 +1,20 @@
-[gd_scene load_steps=7 format=3 uid="uid://dgfg4qcofhu7h"]
+[gd_scene load_steps=6 format=3 uid="uid://dgfg4qcofhu7h"]
 
-[ext_resource type="PackedScene" uid="uid://b0afxdvrjobvb" path="res://Scenes/ball.tscn" id="2_e0rp0"]
-[ext_resource type="PackedScene" uid="uid://cytw2g47hlqlo" path="res://Scenes/Characters/player.tscn" id="3_lpobb"]
+[ext_resource type="PackedScene" uid="uid://bgf6jqc323otm" path="res://Scenes/ball.tscn" id="2_e0rp0"]
+[ext_resource type="PackedScene" uid="uid://b2xwgyh4v5vxe" path="res://Scenes/Arena/walls.tscn" id="2_gw40k"]
+[ext_resource type="PackedScene" uid="uid://duwvkaosg07v" path="res://Scenes/Characters/player.tscn" id="3_lpobb"]
 [ext_resource type="Script" path="res://Scripts/Managers/ball_manager_test.gd" id="3_s2176"]
 [ext_resource type="Texture2D" uid="uid://ceoj0vlnyiu67" path="res://Assets/sprites/BG/Spr_bg_1.png" id="4_dkf2j"]
-[ext_resource type="Texture2D" uid="uid://c2jcte72ptg4f" path="res://Assets/sprites/Wall/Spr_wall_1.png" id="5_h8g5d"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0ncs0"]
-load_path = "res://.godot/imported/Spr_wall_1.png-714c4bc91b01bc77395f559201ea240e.ctex"
 
 [node name="Game" type="Node2D"]
+
+[node name="Floor" type="Node" parent="."]
+
+[node name="SprBg1" type="Sprite2D" parent="Floor"]
+position = Vector2(-1, -5)
+texture = ExtResource("4_dkf2j")
+
+[node name="Walls" parent="." instance=ExtResource("2_gw40k")]
 
 [node name="BallManagerTest" type="Node" parent="."]
 script = ExtResource("3_s2176")
@@ -18,26 +23,15 @@ script = ExtResource("3_s2176")
 unique_name_in_owner = true
 position = Vector2(-13, 26)
 scale = Vector2(0.255199, 0.255199)
+collision_layer = 4097
+collision_mask = 31744
 
 [node name="Player" parent="BallManagerTest" instance=ExtResource("3_lpobb")]
-
-[node name="SprWall1" type="Sprite2D" parent="."]
-position = Vector2(-1, -5)
-texture = SubResource("CompressedTexture2D_0ncs0")
-offset = Vector2(1, 0)
-
-[node name="SprBg1" type="Sprite2D" parent="."]
-position = Vector2(-1, -5)
-texture = ExtResource("4_dkf2j")
-
-[node name="SprWall2" type="Sprite2D" parent="."]
-position = Vector2(-3.55554, -6)
-scale = Vector2(1.00556, 1.00556)
-texture = SubResource("CompressedTexture2D_0ncs0")
-
-[node name="SprWall3" type="Sprite2D" parent="."]
-position = Vector2(-2, -5)
-texture = ExtResource("5_h8g5d")
+position = Vector2(-2, -11)
+scale = Vector2(2.91099, 2.91099)
+collision_layer = 1024
+collision_mask = 17408
+SPEED = 500.0
 
 [connection signal="player_collision" from="BallManagerTest/Ball" to="BallManagerTest" method="_on_ball_player_collision"]
 [connection signal="throw_ball" from="BallManagerTest/Player" to="BallManagerTest" method="_on_player_throw_ball"]
