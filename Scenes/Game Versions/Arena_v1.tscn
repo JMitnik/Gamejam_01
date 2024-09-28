@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://w02jvo1o20lr"]
+[gd_scene load_steps=10 format=3 uid="uid://bd3lp11q4iqdu"]
 
 [ext_resource type="Texture2D" uid="uid://ceoj0vlnyiu67" path="res://Assets/sprites/BG/Spr_bg_1.png" id="2_u7wu7"]
 [ext_resource type="Script" path="res://Scripts/Players/player.gd" id="3_m0rd3"]
@@ -53,7 +53,6 @@ scale = Vector2(5, 5)
 collision_layer = 1024
 collision_mask = 50176
 script = ExtResource("3_m0rd3")
-SPEED = 500.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TeamBlue/Player"]
 scale = Vector2(0.2, 0.2)
@@ -67,7 +66,6 @@ position = Vector2(0, 0.4)
 shape = SubResource("CircleShape2D_vsfx1")
 
 [node name="Camera2D" type="Camera2D" parent="TeamBlue/Player"]
-visible = false
 zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 

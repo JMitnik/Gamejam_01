@@ -5,7 +5,7 @@ signal player_collision
 @onready var sprite = $BallPivot/Sprite2D
 @onready var collision_shape = $CollisionShape2D
 
-@export var initial_velocity = 2
+@export var initial_velocity = 20
 
 var caught = false
 var direction = Vector2(5.0, -10.0).normalized()
@@ -19,7 +19,7 @@ func be_caught():
 	collision_shape.disabled = true
 	
 
-func be_thrown(new_direction):
+func be_thrown(new_direction, throwspeed):
 	#print(position, sprite.position)
 	# Set the position of the Ball to the position of the sprite
 	position = sprite.global_position
@@ -27,7 +27,6 @@ func be_thrown(new_direction):
 	sprite.position = Vector2(0.0, 0.0)
 	#print(position, sprite.position)
 	caught = false
-	print(direction)
 	direction = new_direction
 	collision_shape.disabled = false
 

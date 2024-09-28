@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://dgfg4qcofhu7h"]
 
-[ext_resource type="PackedScene" uid="uid://bgf6jqc323otm" path="res://Scenes/ball.tscn" id="2_e0rp0"]
+[ext_resource type="PackedScene" uid="uid://b0afxdvrjobvb" path="res://Scenes/ball.tscn" id="2_e0rp0"]
 [ext_resource type="PackedScene" uid="uid://b2xwgyh4v5vxe" path="res://Scenes/Arena/walls.tscn" id="2_gw40k"]
-[ext_resource type="PackedScene" uid="uid://duwvkaosg07v" path="res://Scenes/Characters/player.tscn" id="3_lpobb"]
+[ext_resource type="PackedScene" uid="uid://dt21ihw6oxus" path="res://Scenes/Characters/player.tscn" id="3_lpobb"]
 [ext_resource type="Script" path="res://Scripts/Managers/ball_manager_test.gd" id="3_s2176"]
 [ext_resource type="Texture2D" uid="uid://ceoj0vlnyiu67" path="res://Assets/sprites/BG/Spr_bg_1.png" id="4_dkf2j"]
 
@@ -25,7 +25,6 @@ position = Vector2(-23, 44)
 scale = Vector2(0.739708, 0.723006)
 collision_layer = 4097
 collision_mask = 31744
-initial_velocity = 20
 
 [node name="Player" parent="BallManagerTest" instance=ExtResource("3_lpobb")]
 position = Vector2(-335, 33.9998)
