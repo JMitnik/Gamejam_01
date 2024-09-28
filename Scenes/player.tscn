@@ -1,5 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cpk0v0ypmfihn"]
 
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_pggm8"]
 [ext_resource type="Texture2D" uid="uid://boe5mnmv6cub7" path="res://Assets/sprites/slime_body.png" id="1_ygc3w"]
 [ext_resource type="PackedScene" uid="uid://b0afxdvrjobvb" path="res://Scenes/ball.tscn" id="2_nwcwf"]
 
@@ -8,6 +9,7 @@ radius = 45.0444
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(73, 44)
+script = ExtResource("1_pggm8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_ygc3w")
