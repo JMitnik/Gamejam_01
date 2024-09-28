@@ -1,14 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://bd3lp11q4iqdu"]
+[gd_scene load_steps=8 format=3 uid="uid://w02jvo1o20lr"]
 
 [ext_resource type="Texture2D" uid="uid://ceoj0vlnyiu67" path="res://Assets/sprites/BG/Spr_bg_1.png" id="2_u7wu7"]
 [ext_resource type="Script" path="res://Scripts/Players/player.gd" id="3_m0rd3"]
 [ext_resource type="Texture2D" uid="uid://3yykvbmya53s" path="res://Assets/sprites/BluePlayer/Spr_Blueplayer_0.png" id="4_tvymp"]
 [ext_resource type="Texture2D" uid="uid://clorybw3ky4d1" path="res://Assets/sprites/BluePlayer/Spr_Blueplayer_1.png" id="5_lsu3f"]
 [ext_resource type="PackedScene" uid="uid://b2xwgyh4v5vxe" path="res://Scenes/Arena/walls.tscn" id="5_n75n2"]
-[ext_resource type="PackedScene" uid="uid://boiu6ahbadbyn" path="res://Scenes/Characters/dodgeball_player.tscn" id="6_gwr4f"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nqtsr"]
-size = Vector2(20, 656.5)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2aa2l"]
 animations = [{
@@ -35,14 +31,6 @@ radius = 8.15843
 position = Vector2(-1, -5)
 texture = ExtResource("2_u7wu7")
 
-[node name="Center-wall" type="StaticBody2D" parent="Floor"]
-collision_layer = 32768
-collision_mask = 3072
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor/Center-wall"]
-position = Vector2(-3, -5)
-shape = SubResource("RectangleShape2D_nqtsr")
-
 [node name="Walls" parent="." instance=ExtResource("5_n75n2")]
 
 [node name="TeamBlue" type="Node" parent="."]
@@ -51,7 +39,7 @@ shape = SubResource("RectangleShape2D_nqtsr")
 position = Vector2(-252, -1)
 scale = Vector2(5, 5)
 collision_layer = 1024
-collision_mask = 50176
+collision_mask = 17408
 script = ExtResource("3_m0rd3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TeamBlue/Player"]
@@ -70,12 +58,3 @@ zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 
 [node name="TeamRed" type="Node" parent="."]
-
-[node name="DodgeballPlayer" parent="TeamRed" instance=ExtResource("6_gwr4f")]
-position = Vector2(257, -55)
-
-[node name="DodgeballPlayer2" parent="TeamRed" instance=ExtResource("6_gwr4f")]
-position = Vector2(186, -212)
-
-[node name="DodgeballPlayer3" parent="TeamRed" instance=ExtResource("6_gwr4f")]
-position = Vector2(175, 158)
