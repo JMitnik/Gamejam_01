@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://ceoj0vlnyiu67" path="res://Assets/sprites/BG/Spr_bg_1.png" id="4_dkf2j"]
 [ext_resource type="PackedScene" uid="uid://boiu6ahbadbyn" path="res://Scenes/Characters/dodgeball_player.tscn" id="6_p8bxj"]
 [ext_resource type="PackedScene" uid="uid://c1cihamlrjthq" path="res://Scenes/Singletons/managers.tscn" id="7_1hgo6"]
-[ext_resource type="Texture2D" uid="uid://dwbx6p18wkk7q" path="res://Assets/sprites/Ball/Spr_Ball_1.png" id="8_hnvv0"]
+[ext_resource type="Texture2D" uid="uid://cdgfo8o6md471" path="res://Assets/sprites/Spr_Gameover_0.png" id="8_t61rn"]
 
 [node name="Game" type="Node2D"]
 
@@ -31,7 +31,7 @@ SPEED = 500.0
 [node name="BallManagerTest" type="Node" parent="."]
 script = ExtResource("3_s2176")
 
-[node name="Ball" parent="BallManager" instance=ExtResource("2_e0rp0")]
+[node name="Ball" parent="BallManagerTest" instance=ExtResource("2_e0rp0")]
 unique_name_in_owner = true
 position = Vector2(-23, 44)
 scale = Vector2(0.739708, 0.723006)
@@ -55,8 +55,8 @@ position = Vector2(175, 158)
 
 [node name="Sprite2D" type="Sprite2D" parent="FinalScreen"]
 z_index = 5
-scale = Vector2(22.92, 22.92)
-texture = ExtResource("8_hnvv0")
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("8_t61rn")
 
 [connection signal="ball_is_thrown" from="Player" to="BallManagerTest" method="_on_player_ball_is_thrown"]
 [connection signal="moving_with_ball" from="Player" to="BallManagerTest" method="_on_player_moving_with_ball"]
