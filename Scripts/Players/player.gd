@@ -58,6 +58,7 @@ func _physics_process(delta: float) -> void:
 		#lerp is short for linear interpolation; input*speed = topspeed & delta & ACCEL smoothens movement, lower is more lag higher is more snap.
 		velocity = lerp(velocity, playerInput * SPEED, delta * ACCEL)
 		move_and_slide()
+		
 func dash():
 	#note, I'm too lazy and am just using the ball as a visual instead of creating a new one. Below is the code actually doing the work.
 	SPEED = SPEED * DASHSPEEDMULT
@@ -69,5 +70,3 @@ func dash():
 
 	await get_tree().create_timer(CANDASHTIMER).timeout
 	CANDASH=1
-
-

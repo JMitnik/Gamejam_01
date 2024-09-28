@@ -1,14 +1,14 @@
 [gd_scene load_steps=12 format=4 uid="uid://cqdijth30ii4s"]
 
-[ext_resource type="Script" path="res://Scripts/player.gd" id="1_jbgcb"]
-[ext_resource type="Texture2D" uid="uid://cc3lfdmrwq5o6" path="res://Assets/sprites/world_tileset.png" id="3_rrob0"]
-[ext_resource type="Texture2D" uid="uid://3yykvbmya53s" path="res://Assets/sprites/BluePlayer/Spr_Blueplayer_0.png" id="3_tpmds"]
-[ext_resource type="Texture2D" uid="uid://ceoj0vlnyiu67" path="res://Assets/sprites/BG/Spr_bg_1.png" id="4_8c11j"]
-[ext_resource type="Texture2D" uid="uid://clorybw3ky4d1" path="res://Assets/sprites/BluePlayer/Spr_Blueplayer_1.png" id="4_mokvn"]
-[ext_resource type="Texture2D" uid="uid://c2jcte72ptg4f" path="res://Assets/sprites/Wall/Spr_wall_1.png" id="5_shpgh"]
+[ext_resource type="Texture2D" uid="uid://cc3lfdmrwq5o6" path="res://Assets/sprites/world_tileset.png" id="1_d1xsh"]
+[ext_resource type="Texture2D" uid="uid://ceoj0vlnyiu67" path="res://Assets/sprites/BG/Spr_bg_1.png" id="2_u7wu7"]
+[ext_resource type="Script" path="res://Scripts/Players/player.gd" id="3_m0rd3"]
+[ext_resource type="Texture2D" uid="uid://3yykvbmya53s" path="res://Assets/sprites/BluePlayer/Spr_Blueplayer_0.png" id="4_tvymp"]
+[ext_resource type="Texture2D" uid="uid://clorybw3ky4d1" path="res://Assets/sprites/BluePlayer/Spr_Blueplayer_1.png" id="5_lsu3f"]
+[ext_resource type="Texture2D" uid="uid://c2jcte72ptg4f" path="res://Assets/sprites/Wall/Spr_wall_1.png" id="6_x1bsr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nyihl"]
-texture = ExtResource("3_rrob0")
+texture = ExtResource("1_d1xsh")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -147,10 +147,10 @@ load_path = "res://.godot/imported/Spr_wall_1.png-714c4bc91b01bc77395f559201ea24
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_tpmds")
+"texture": ExtResource("4_tvymp")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_mokvn")
+"texture": ExtResource("5_lsu3f")
 }],
 "loop": true,
 "name": &"default",
@@ -175,11 +175,11 @@ offset = Vector2(1, 0)
 
 [node name="SprBg1" type="Sprite2D" parent="."]
 position = Vector2(-1, -5)
-texture = ExtResource("4_8c11j")
+texture = ExtResource("2_u7wu7")
 
 [node name="Player" type="CharacterBody2D" parent="."]
 scale = Vector2(5, 5)
-script = ExtResource("1_jbgcb")
+script = ExtResource("3_m0rd3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
 scale = Vector2(0.2, 0.2)
@@ -197,11 +197,10 @@ zoom = Vector2(4, 4)
 position_smoothing_enabled = true
 
 [node name="SprWall2" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(-3.55554, -6)
 scale = Vector2(1.00556, 1.00556)
 texture = SubResource("CompressedTexture2D_asxwe")
 
 [node name="SprWall3" type="Sprite2D" parent="."]
 position = Vector2(-2, -5)
-texture = ExtResource("5_shpgh")
+texture = ExtResource("6_x1bsr")
