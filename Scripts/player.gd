@@ -4,6 +4,8 @@ extends CharacterBody2D
 #Used for movement smoothing later
 @export var ACCEL = 10.0
 
+signal throw_ball
+var have_ball: bool = false
 #used for dashing
 var SPEEDCARRY = SPEED
 var CANDASH = 1
@@ -29,6 +31,18 @@ func get_move_input():
 	return input.normalized()
 	
 func _physics_process(delta: float) -> void:
+	if Input.is_action_just_pressed("throw_ball") and have_ball:
+		var player_position = global_position
+		var mouse_position = get_global_mouse_position()
+		
+		# Calculate the direction vector
+		var direction = mouse_position - player_position
+		direction = direction.normalized()
+		
+		throw_ball.emit(direction)
+		print("direction from player", direction)
+		have_ball = false
+
 	if MOUSEDASH == true:
 		if ISDASHING == true:
 			var mousedirection = get_global_mouse_position()
@@ -55,3 +69,5 @@ func dash():
 
 	await get_tree().create_timer(CANDASHTIMER).timeout
 	CANDASH=1
+
+

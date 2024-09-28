@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgfg4qcofhu7h"]
+
+[ext_resource type="PackedScene" uid="uid://cbkx72n7y4co1" path="res://Scenes/player.tscn" id="1_avsam"]
+[ext_resource type="PackedScene" uid="uid://c66fahcn6bnbi" path="res://Scenes/ball.tscn" id="2_e0rp0"]
+
+[node name="Game" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_avsam")]
+position = Vector2(519, 242)
+
+[node name="Ball" parent="." instance=ExtResource("2_e0rp0")]
+unique_name_in_owner = true
+position = Vector2(377, 367)
