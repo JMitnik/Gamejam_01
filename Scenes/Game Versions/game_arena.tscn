@@ -50,6 +50,7 @@ scale = Vector2(0.240003, 3.76)
 
 [node name="Player" parent="." instance=ExtResource("1_lrmtj")]
 position = Vector2(365, 383)
+scale = Vector2(1.015, 1.00176)
 collision_layer = 1024
 collision_mask = 17408
 SPEED = 250.0
