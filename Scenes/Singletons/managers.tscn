@@ -1,8 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://c1cihamlrjthq"]
+[gd_scene load_steps=3 format=3 uid="uid://c1cihamlrjthq"]
 
 [ext_resource type="Script" path="res://Scripts/Managers/winning_state_manager.gd" id="1_80aal"]
+[ext_resource type="Script" path="res://Scripts/Managers/game_guardian_manager.gd" id="2_wyyau"]
 
 [node name="Managers" type="Node"]
 
 [node name="WinningStateManager" type="Node" parent="."]
 script = ExtResource("1_80aal")
+
+[node name="GameGuardian" type="Node" parent="."]
+script = ExtResource("2_wyyau")

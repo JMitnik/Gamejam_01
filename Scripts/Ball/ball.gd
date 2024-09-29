@@ -2,6 +2,9 @@ extends CharacterBody2D
 
 signal player_collision
 
+# The `ball_in_court` signal is emitted when the ball passes the "middle wall" and is in the right court
+signal ball_in_right_court
+
 @onready var sprite = $BallPivot/Sprite2D
 @onready var collision_shape = $CollisionShape2D
 
@@ -28,10 +31,12 @@ func be_thrown(new_direction, throwspeed):
 	direction = new_direction
 	collision_shape.disabled = false
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if caught:
 		look_at(get_global_mouse_position())
 	else: 
+
+		# TODO: Refactor to RigidBody2d/Area2d
 		velocity = direction * initial_velocity
 		var collision = move_and_collide(velocity)
 		if collision:
@@ -39,6 +44,13 @@ func _physics_process(delta):
 			
 			if collider is DodgeballPlayer:
 				hit_dodgeball_player(collider)
+			
+			var collider_layer = collider.get_collision_layer()
+			print("Collider layer: ", collider_layer)
+
+			if collider_layer && collider_layer == Constants.Layer.CenterWall:
+				ball_in_right_court.emit('right_side')
+				return
 			
 			velocity *= 0.0
 			player_collision.emit(collision.get_collider_id())	

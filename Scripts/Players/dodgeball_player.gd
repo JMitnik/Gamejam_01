@@ -1,11 +1,15 @@
 extends CharacterBody2D
 class_name DodgeballPlayer
 
+# Outputs: BallInCourt signal
+signal BallInCourt
+
 @export var team_name: String = 'red'
 @export var move_speed: float = 100.0
 @export var change_direction_time: float = 2.0
 #@export var movement_bounds: Rect2 = Rect2(0, 0, 1000, 1000);
 @onready var winning_state_manager: WinningStateManager = get_node("/root/Game/Managers/WinningStateManager")
+@onready var state_machine: StateMachine = $"%State Machine"
 
 var current_direction: Vector2 = Vector2.ZERO
 var time_since_last_direction_change: float = 0.0
@@ -33,3 +37,10 @@ func destroy():
 	# Implement destruction behavior here
 	winning_state_manager.kill_player(self, team_name)
 	queue_free()
+
+
+func is_ball_in_court():
+	# Implement your logic to detect if a ball is in the court
+	# This could involve raycasts, area detection, etc.
+	# Return true if a ball is detected, false otherwise
+	pass

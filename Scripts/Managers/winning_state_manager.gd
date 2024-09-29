@@ -9,7 +9,11 @@ var team_blue = []
 func _ready() -> void:
 	var red_nodes = get_team_nodes('TeamRed')
 	var blue_nodes = get_team_nodes('TeamBlue')
-	final_screen.hide()
+	
+	if (final_screen):
+		final_screen.hide()
+	else:
+		push_warning("A final screen should be set, otherwise no error state")
 
 func update_team_count():
 	team_red = get_team_nodes('TeamRed')

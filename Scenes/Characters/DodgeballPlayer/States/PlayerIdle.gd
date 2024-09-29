@@ -32,11 +32,14 @@ func Enter() -> void:
 func Update(_delta: float) -> void:
 	# If the "wander timer is up", randomize the wander
 	if wander_time <= 0:
-		print("Wander time is up")
 		randomize_wander()
 	else:
 		wander_time -= 1
 
+###
+# Executed every physics frame.
+# Note: This will actually apply the physics to the player
+###
 func Physics_Update(_delta: float) -> void:
 	# Apply the movement to the player
 	player.move_and_collide(movement[MovementType.Velocity] * movement[MovementType.Max_Speed] * _delta)

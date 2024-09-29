@@ -20,6 +20,7 @@ texture = ExtResource("2_dcexq")
 shape = SubResource("CircleShape2D_xb40q")
 
 [node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+unique_name_in_owner = true
 script = ExtResource("3_ug8ie")
 initial_state = NodePath("PlayerIdle")
 
