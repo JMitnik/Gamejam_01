@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://boiu6ahbadbyn"]
+[gd_scene load_steps=6 format=3 uid="uid://boiu6ahbadbyn"]
 
 [ext_resource type="Script" path="res://Scripts/Players/dodgeball_player.gd" id="1_kkh1g"]
 [ext_resource type="Texture2D" uid="uid://djjahpp83xps0" path="res://Assets/sprites/RedPlayer/Spr_Redplayer_0.png" id="2_dcexq"]
+[ext_resource type="Script" path="res://Scenes/Characters/DodgeballPlayer/States/PlayerIdle.gd" id="3_cphhd"]
+[ext_resource type="Script" path="res://Scripts/Common/State/StateMachine.gd" id="3_ug8ie"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xb40q"]
 
@@ -16,3 +18,11 @@ texture = ExtResource("2_dcexq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_xb40q")
+
+[node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_ug8ie")
+initial_state = NodePath("PlayerIdle")
+
+[node name="PlayerIdle" type="Node" parent="State Machine" node_paths=PackedStringArray("player")]
+script = ExtResource("3_cphhd")
+player = NodePath("../..")

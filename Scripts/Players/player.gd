@@ -88,8 +88,7 @@ func _physics_process(delta: float) -> void:
 func move_ball():
 	pass
 
-func throw_ball(throwspeeds):
-	print(throwspeeds)
+func throw_ball(_throwspeeds):
 	var player_position = global_position
 	var mouse_position = get_global_mouse_position()
 	

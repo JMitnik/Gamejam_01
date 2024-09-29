@@ -12,8 +12,6 @@ var time_since_last_direction_change: float = 0.0
 
 func _ready():
 	print("Hello")
-	#randomize()  # Initialize random number generator
-	#change_direction()
 
 func _input(event):
 	if event is InputEventKey:
@@ -24,17 +22,7 @@ func _input(event):
 				print("F key was just released")
 
 func _physics_process(delta):
-	time_since_last_direction_change += delta
-	
-	if time_since_last_direction_change >= change_direction_time:
-		change_direction()
-	
-	move_and_slide()
-
-func change_direction():
-	current_direction = Vector2(randf_range(-1, 1), randf_range(-1, 1)).normalized()
-	velocity = current_direction * move_speed
-	time_since_last_direction_change = 0.0
+	pass
 
 func hit():
 	# Hardcode:

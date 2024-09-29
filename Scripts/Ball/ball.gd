@@ -19,20 +19,16 @@ func be_caught():
 	collision_shape.disabled = true
 	
 func be_thrown(new_direction, throwspeed):
-	print(throwspeed)
 	# Set the position of the Ball to the position of the sprite
 	position = sprite.global_position
 	# Remove the offset
 	sprite.position = Vector2(0.0, 0.0)
-	#print(position, sprite.position)
 	caught = false
 
 	direction = new_direction
 	collision_shape.disabled = false
 
 func _physics_process(delta):
-	print(delta)
-	
 	if caught:
 		look_at(get_global_mouse_position())
 	else: 
@@ -49,7 +45,6 @@ func _physics_process(delta):
 			
 
 func hit_dodgeball_player(player: DodgeballPlayer) -> void:
-	print('destroy!')
 	player.destroy()
 	
 func move_with_player(player_position):
