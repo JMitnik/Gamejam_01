@@ -1,70 +1,66 @@
-extends CharacterBody2D
+extends Area2D
 
 signal player_collision
 
 # The `ball_in_court` signal is emitted when the ball passes the "middle wall" and is in the right court
 signal ball_in_right_court
 
-@onready var sprite = $BallPivot/Sprite2D
+@onready var ball_sprite = $BallPivot/SprBall0
+@onready var arrow_sprite = $BallPivot/SprArrow1
 @onready var collision_shape = $CollisionShape2D
 
-@export var initial_velocity = 20
+@export var ball_speed = 500
+@export var sprite_offset_from_player = Vector2(35, 0)
+@export var arrow_sprite_offset_from_ball = Vector2(80, 0)
 
 var caught = false
-var direction = Vector2(5.0, -10.0).normalized()
+var ball_direction = Vector2(5.0, -10.0).normalized()
+var owned_by_player = null
 
 func _ready():
+	# Change the direction of a ball to a random direction on a circle
 	pass
 	
-func be_caught():
+func be_caught(catching_player):
 	caught = true
-	sprite.position = Vector2(100, 0)
 	collision_shape.disabled = true
 	
+	owned_by_player = catching_player
+	ball_sprite.position = sprite_offset_from_player
+	
+	arrow_sprite.visible = true
+	arrow_sprite.position = sprite_offset_from_player + arrow_sprite_offset_from_ball
+
 func be_thrown(new_direction, throwspeed):
 	# Set the position of the Ball to the position of the sprite
-	position = sprite.global_position
+	position = ball_sprite.global_position
 	# Remove the offset
-	sprite.position = Vector2(0.0, 0.0)
+	ball_sprite.position = Vector2(0.0, 0.0)
+	ball_direction = new_direction
 	caught = false
-
-	direction = new_direction
+	arrow_sprite.visible = false
 	collision_shape.disabled = false
 
 func _physics_process(_delta):
 	if caught:
+		position = owned_by_player.position
 		look_at(get_global_mouse_position())
-	else: 
+	else:
+		position += ball_direction * ball_speed * delta
 
-		# TODO: Refactor to RigidBody2d/Area2d
-		velocity = direction * initial_velocity
-		var collision = move_and_collide(velocity)
-		if collision:
-			var collider = collision.get_collider()
-			
-			if collider is DodgeballPlayer:
-				hit_dodgeball_player(collider)
-			
-			var collider_layer = collider.get_collision_layer()
-			print("Collider layer: ", collider_layer)
-
-			if collider_layer && collider_layer == Constants.Layer.CenterWall:
-				ball_in_right_court.emit('right_side')
-				return
-			
-			velocity *= 0.0
-			player_collision.emit(collision.get_collider_id())	
-			
+func _on_body_entered(body):
+	if body is DodgeballPlayer:
+		if true:
+			hit_dodgeball_player(body)
+		# If a player catches the ball
+	elif body is Player:
+		print("hit by player")
+		be_caught(body)
+		player_collision.emit()
+	# elif body is Constants.Layer.CenterWall:
+	# 	ball_in_right_court.emit('right_side')
+	else:
+		be_caught(owned_by_player)
 
 func hit_dodgeball_player(player: DodgeballPlayer) -> void:
 	player.destroy()
-	
-func move_with_player(player_position):
-	position = player_position
-
-func _on_player_ball_is_thrown() -> void:
-	pass # Replace with function body.
-
-
-func _on_player_moving_with_ball() -> void:
-	pass # Replace with function body.

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dt21ihw6oxus"]
+[gd_scene load_steps=6 format=3 uid="uid://duwvkaosg07v"]
 
 [ext_resource type="Script" path="res://Scripts/Players/player.gd" id="1_jbgcb"]
 [ext_resource type="Texture2D" uid="uid://3yykvbmya53s" path="res://Assets/sprites/BluePlayer/Spr_Blueplayer_0.png" id="2_y4eex"]
@@ -21,13 +21,6 @@ animations = [{
 "speed": 3.0
 }]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_piw8v"]
-bg_color = Color(1, 1, 1, 1)
-border_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jq6le"]
-bg_color = Color(0.721935, 0.423842, 0.00513748, 1)
-
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(1, 1.00569)
 script = ExtResource("1_jbgcb")
@@ -47,15 +40,3 @@ scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_q2efl")
 autoplay = "default"
 speed_scale = 0.5
-
-[node name="Throwcharge" type="ProgressBar" parent="."]
-visible = false
-offset_left = -12.0
-offset_top = -10.9378
-offset_right = -8.0
-offset_bottom = 16.0622
-scale = Vector2(6.28986, 0.0539035)
-theme_override_styles/background = SubResource("StyleBoxFlat_piw8v")
-theme_override_styles/fill = SubResource("StyleBoxFlat_jq6le")
-max_value = 0.5
-show_percentage = false
