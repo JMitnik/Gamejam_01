@@ -1,12 +1,36 @@
-[gd_scene load_steps=6 format=3 uid="uid://b0afxdvrjobvb"]
+[gd_scene load_steps=9 format=3 uid="uid://b0afxdvrjobvb"]
 
 [ext_resource type="Script" path="res://Scripts/Ball/ball.gd" id="1_3ai8g"]
 [ext_resource type="Texture2D" uid="uid://dpbpym12aypii" path="res://Assets/sprites/ball.png" id="1_hmj12"]
 [ext_resource type="Texture2D" uid="uid://cib8bm6mrwad5" path="res://Assets/sprites/Arrow/Spr_arrow_1.png" id="3_5ge12"]
 [ext_resource type="Texture2D" uid="uid://dyqinyb0huw37" path="res://Assets/sprites/Ball/Spr_Ball_0.png" id="4_0yjf6"]
+[ext_resource type="Texture2D" uid="uid://co04peigeihbf" path="res://Assets/sprites/Ball/Spr_Ball_2.png" id="5_p4v3t"]
+[ext_resource type="Texture2D" uid="uid://dwbx6p18wkk7q" path="res://Assets/sprites/Ball/Spr_Ball_1.png" id="6_2csup"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gl2k3"]
 radius = 27.2029
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l0bgo"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_0yjf6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_p4v3t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_2csup")
+}],
+"loop": false,
+"name": &"squish",
+"speed": 20.0
+}]
 
 [node name="Ball" type="Area2D"]
 script = ExtResource("1_3ai8g")
@@ -14,7 +38,12 @@ script = ExtResource("1_3ai8g")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_gl2k3")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CollisionShape2D"]
+sprite_frames = SubResource("SpriteFrames_l0bgo")
+animation = &"squish"
+
 [node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
+visible = false
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("1_hmj12")
 

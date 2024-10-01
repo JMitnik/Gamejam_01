@@ -6,6 +6,7 @@ class_name GameGuardian
 
 func _ready() -> void:
 	check_layers()
+	check_required_groups()
 
 ###
 # Check that the layers in the Game Settings match the enum Settings
@@ -23,3 +24,12 @@ func check_layers() -> void:
 				assert(layer_name == "right_players", "Layer" + str(i) + " should be named" + "RightPlayers")
 			Constants.Layer.Ball:
 				assert(layer_name == "ball", "Layer" + str(i) + " should be named" + "Ball")
+
+func check_required_groups() -> void:
+	"""
+	This ensures that the groups in the Game Settings actually exist.
+	"""
+	var groups = [Constants.Group.Players, Constants.Group.Balls]
+	
+	for group in groups:
+		assert(get_tree().has_group(group), "Group " + group + " does not exist. => Please add it in the Game Settings.")

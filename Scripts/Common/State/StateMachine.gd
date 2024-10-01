@@ -67,8 +67,9 @@ func on_child_transitioned(state: State, new_state_name: String) -> void:
 		# Call the Exit method of the current state
 		current_state.Exit()
 
+	print(next_state.get_name() + " state SHOULD BE entered")
 	next_state.Enter()
 
 	current_state = next_state
 	# Emit the Transitioned signal when a child state emits its Transitioned signal
-	emit_signal("Transitioned")
+	# emit_signal("Transitioned")

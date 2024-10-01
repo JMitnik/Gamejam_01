@@ -24,6 +24,8 @@ window/size/viewport_height=1600
 
 TeamRed=""
 TeamBlue=""
+Players="Players in game"
+Balls="The ball"
 
 [input]
 

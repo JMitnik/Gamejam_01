@@ -1,11 +1,32 @@
-[gd_scene load_steps=6 format=3 uid="uid://boiu6ahbadbyn"]
+[gd_scene load_steps=11 format=3 uid="uid://boiu6ahbadbyn"]
 
 [ext_resource type="Script" path="res://Scripts/Players/dodgeball_player.gd" id="1_kkh1g"]
+[ext_resource type="Texture2D" uid="uid://bduhije5ukseg" path="res://Assets/sprites/Particles/Spr_particles_0.png" id="2_20r1j"]
 [ext_resource type="Texture2D" uid="uid://djjahpp83xps0" path="res://Assets/sprites/RedPlayer/Spr_Redplayer_0.png" id="2_dcexq"]
+[ext_resource type="Script" path="res://Scenes/Characters/DodgeballPlayer/DodgeballStateMachine.gd" id="3_4yjaw"]
+[ext_resource type="Texture2D" uid="uid://c648adpplo3s2" path="res://Assets/sprites/Particles/Spr_particles_1.png" id="3_c0y3c"]
 [ext_resource type="Script" path="res://Scenes/Characters/DodgeballPlayer/States/PlayerIdle.gd" id="3_cphhd"]
-[ext_resource type="Script" path="res://Scripts/Common/State/StateMachine.gd" id="3_ug8ie"]
+[ext_resource type="Texture2D" uid="uid://b1g6btrmawxuk" path="res://Assets/sprites/Particles/Spr_particles_2.png" id="4_s2q6x"]
+[ext_resource type="Script" path="res://Scenes/Characters/DodgeballPlayer/States/PlayerChase.gd" id="5_n7tsb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xb40q"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c2moq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_20r1j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_c0y3c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_s2q6x")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="DodgeballPlayer" type="CharacterBody2D"]
 collision_layer = 2048
@@ -19,11 +40,20 @@ texture = ExtResource("2_dcexq")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_xb40q")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-3, -3)
+sprite_frames = SubResource("SpriteFrames_c2moq")
+frame_progress = 0.842648
+
 [node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 unique_name_in_owner = true
-script = ExtResource("3_ug8ie")
-initial_state = NodePath("PlayerIdle")
+script = ExtResource("3_4yjaw")
+initial_state = NodePath("Idle")
 
-[node name="PlayerIdle" type="Node" parent="State Machine" node_paths=PackedStringArray("player")]
+[node name="Idle" type="Node" parent="State Machine" node_paths=PackedStringArray("player")]
 script = ExtResource("3_cphhd")
+player = NodePath("../..")
+
+[node name="Chase" type="Node" parent="State Machine" node_paths=PackedStringArray("player")]
+script = ExtResource("5_n7tsb")
 player = NodePath("../..")

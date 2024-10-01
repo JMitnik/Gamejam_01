@@ -1,6 +1,7 @@
 extends State
-class_name PlayerIdle
+class_name PlayerChase
 
+@onready var ball: Ball = look_for_ball()
 @export var player: DodgeballPlayer
 
 enum MovementType {
@@ -27,26 +28,44 @@ func randomize_wander() -> void:
 	wander_time = randi_range(20, 70)
 
 func Enter() -> void:
-	randomize_wander()
+	print("PlayerChase state entered")
+	update_chase_direction()
 
 func Exit() -> void:
-	print("PlayerIdle state exited")
+	print("PlayerChase state exited")
 
 func Update(_delta: float) -> void:
+	pass
 	# If the "wander timer is up", randomize the wander
-	if wander_time <= 0:
-		randomize_wander()
-	else:
-		wander_time -= 1
+	#if wander_time <= 0:
+		#randomize_wander()
+	#else:
+		#wander_time -= 1
 
 ###
 # Executed every physics frame.
 # Note: This will actually apply the physics to the player
 ###
 func Physics_Update(_delta: float) -> void:
+	update_chase_direction()
+	player.move_and_slide()
+	pass
 	# Apply the movement to the player
-	player.move_and_collide(movement[MovementType.Velocity] * movement[MovementType.Max_Speed] * _delta)
+	#player.move_and_collide(movement[MovementType.Velocity] * movement[MovementType.Max_Speed] * _delta)
 
 func handle_ball_in_court(_side: String):
-	print("emit chase")
-	Transitioned.emit(self, 'chase')
+	print("Should emit chase!")
+	
+func update_chase_direction() -> void:
+	if ball and player:
+		var direction = (ball.global_position - player.global_position).normalized()
+		player.velocity = direction * 150.0
+
+func look_for_ball() -> Ball:
+	# Look for the ball in the scene
+	var balls = get_tree().get_nodes_in_group("Balls")
+	if balls.size() == 0:
+		push_error("No balls found in the scene.")
+		return null
+
+	return balls[0] as Ball
